@@ -2,3 +2,26 @@
   text-align: center;
 }
 
+html {}
+.nav {
+  margin: 4px;
+  font-style: bold;
+  
+}
+
+.article {
+  margin: 60px;
+  margin-bottom: 100px;
+}
+
+.author-image {
+  height: 70px;
+}
+
+.topic-button {
+  margin: 10px;
+  padding: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  
+}
