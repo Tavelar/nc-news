@@ -8,6 +8,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Header />} />
+        {/* <Route path='/articles' */}
       </Routes>
     </div>
   );
