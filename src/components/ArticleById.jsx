@@ -40,7 +40,7 @@ e.preventDefault();
 setVotes((currVotes) => currVotes + 1)
     fetch(`https://tavelar-app.herokuapp.com/api/articles/${article_id}`, {
         method: 'PATCH',
-        body: JSON.stringify({votes: e.target.value }),
+        body: JSON.stringify({inc_votes: 1 }),
         headers: {
             'Content-Type': 'application/json'
         }
@@ -57,7 +57,7 @@ const disLikeButton = (e) => {
     setVotes((currVotes) => currVotes - 1)
     fetch(`https://tavelar-app.herokuapp.com/api/articles/${article_id}`, {
         method: 'PATCH',
-        body: JSON.stringify({votes: e.target.value }),
+        body: JSON.stringify({inc_votes: -1 }),
         headers: {
             'Content-Type': 'application/json'
         }
