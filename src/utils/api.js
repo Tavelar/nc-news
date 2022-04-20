@@ -26,16 +26,16 @@ export const getComments = async (article_id) => {
   return data;
 };
 
-export const patchArticleId = async (article_id) => {
-  const { data } = await ncNewsApi.patch(`/articles/${article_id}`);
-  return data;
-};
+// export const patchArticleId = async (article_id) => {
+//   const { data } = await ncNewsApi.patch(`/articles/${article_id}`);
+//   return data;
+// };
 
-export const postArticleComment = async (article_id, newCommentBody) => {
-  const { data } = await ncNewsApi.post(
-    `/articles/${article_id}/comments`,
-    newCommentBody
-  );
-  console.log(data);
-  return data;
-};
+// export const postArticleComment = async (article_id, newCommentBody) => {
+//   const { data } = await ncNewsApi.post(
+//     `/articles/${article_id}/comments`,
+//     newCommentBody
+//   );
+//   console.log(data);
+//   return data;
+// };

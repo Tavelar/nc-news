@@ -50,7 +50,7 @@ useEffect(() => {
                   <p>{article.created_at}</p>
                    </button> 
              </Link>
-                   {/* will eventually make this button a gateway to a single article */}
+                 
                   <p>comments: {article.comment_count}</p>
                   <p>votes: {article.votes} </p>
                  
