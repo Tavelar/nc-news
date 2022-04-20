@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import {getArticleId, getUsers, getComments, patchArticleId, postArticleComment} from '../utils/api'
+import {getComments, postArticleComment} from '../utils/api'
 const Comments = ({article_id}) => {
 const [comments, setComments] = useState([]);
 const [newCommentBody, setNewCommentBody] = useState('');
+
 useEffect(() => {
     getComments(article_id).then((comments) => {
         setComments(comments.comments)
@@ -11,13 +12,11 @@ useEffect(() => {
 
 const newArticleComment = (e) => {
     e.preventDefault()
-        fetch(`https://tavelar-app.herokuapp.com/api/articles/${article_id}/comments` , {
-            method: 'POST',
-            body: JSON.stringify({ body: newCommentBody , username: 'grumpy19' }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
+
+    postArticleComment(article_id, newCommentBody)
+    .then((comment) => {
+        console.log(comment);
+    })
     }
 
 return (
@@ -26,7 +25,7 @@ return (
                    <label>
 
 
-                   <input value={newCommentBody} onChange={(e => setNewCommentBody(e.target.value))} name='body' placeholder="comment" type='text'></input> 
+                   <input value={newCommentBody.body} onChange={(e => setNewCommentBody(e.target.value))} name='body' placeholder="comment" type='text'></input> 
                    </label>
                    <button>post</button> 
                </form>

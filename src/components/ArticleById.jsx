@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import {getArticleId, getUsers, getComments, patchArticleId, postArticleComment} from '../utils/api'
+import {getArticleId, getUsers, patchUpvote, patchDownvote} from '../utils/api'
 import {useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Comments from '../components/Comments'
 const ArticleById = () => {
 const [article, setArticle] = useState([])
@@ -13,7 +14,7 @@ useEffect(() => {
     getArticleId(article_id).then((article) => {
         setArticle(article.article)
     })
-},[])
+},[article_id])
 useEffect(() => {
     getUsers().then((user) => { 
         setUser(user.users)
@@ -22,29 +23,16 @@ useEffect(() => {
 
 
 const likeButton = (e) => {
-
 e.preventDefault();
 setVotes((currVotes) => currVotes + 1)
-    fetch(`https://tavelar-app.herokuapp.com/api/articles/${article_id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({inc_votes: 1 }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+patchUpvote(article_id)
 }
 const disLikeButton = (e) => {
- 
     e.preventDefault();
     setVotes((currVotes) => currVotes - 1)
-    fetch(`https://tavelar-app.herokuapp.com/api/articles/${article_id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({inc_votes: -1 }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+    patchDownvote(article_id)
     }
+
 let image; 
     for (let i = 0; i<user.length; i++) {
       if(article.author === user[i].username) {
@@ -57,11 +45,13 @@ let image;
                <li className="article" key={article.article_id}>
                   <h3>{article.title}</h3>
                  
-             <h5><img className="author-image" src={image}></img>by {article.author}</h5>
+             <h5><img className="author-image" alt='broken' src={image}></img>by {article.author}</h5>
              
+             <Link to={`/articles/topic/${article.topic}`} >
              <button className="topic-button">
                   <p>{article.topic}</p>
              </button>
+             </Link>
                    <button>
                   <p>{article.body}</p>
                   <p>{article.created_at}</p>

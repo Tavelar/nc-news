@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import {getArticles, getUsers} from '../utils/api'
+import {Link} from 'react-router-dom'
+import Sorter from '../components/Sorter'
 import {useParams} from 'react-router-dom'
 
 const TopicOfArticles = () => {
@@ -23,6 +25,7 @@ useEffect(() => {
 
 return (
     <div>
+         <Sorter setArticles={setArticles} />
        <ul>
 
        {articles.filter((filt) => {
@@ -45,14 +48,17 @@ return (
                   <h3>{article.title}</h3>
                  
              <h5><img className="author-image" src={image}></img>by {article.author}</h5>
+            
              <button className="topic-button">
-
                   <p>{article.topic}</p>
              </button>
+             
+             <Link to={`/articles/${article.article_id}`}>
                    <button>
                   <p>{article.body}</p>
                   <p>{article.created_at}</p>
                    </button> 
+             </Link>  
                    {/* will eventually make this button a gateway to a single article */}
                   <p>comments: {article.comment_count}</p>
                   <p>votes: {article.votes}</p>

@@ -1,25 +1,23 @@
 import { useEffect, useState } from "react";
 import {getArticles, getUsers} from '../utils/api'
+import Sorter from "../components/Sorter"
 import { Link } from 'react-router-dom'
+
 const Articles = () => {
 const [articles, setArticles] = useState([])
 const [users, setUsers] = useState([])
 useEffect(() => {
-    getArticles().then((article) => {
-        
-        setArticles(article.articles)
-    })
+    getArticles().then((article) => setArticles(article.articles))
+    getUsers().then((users) => setUsers(users.users))
 },[])
-useEffect(() => {
-    getUsers().then((users) => {
-       
-        setUsers(users.users)
-    })
-},[])
+
 
     return (
    <div>
+
+      <Sorter setArticles={setArticles} />
        <ul>
+           
 
        {articles.map((article) => {
            let image;
@@ -33,7 +31,7 @@ useEffect(() => {
                   <h3>{article.title}</h3>
                  
              <h5><img className="author-image" src={image}></img>by {article.author}</h5>
-             <Link to={`topics/${article.topic}`} >
+             <Link to={`topic/${article.topic}`} >
              <button className="topic-button">
                   <p>{article.topic}</p>
              </button>
