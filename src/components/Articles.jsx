@@ -18,8 +18,6 @@ useEffect(() => {
 },[])
 
     return (
-        
-
    <div>
        <ul>
 
@@ -29,13 +27,9 @@ useEffect(() => {
                if(article.author === users[i].username) {
                     image = users[i].avatar_url
                }
-
-           }
-        
+           }       
            return (
                <li className="article" key={article.article_id}>
-
-
                   <h3>{article.title}</h3>
                  
              <h5><img className="author-image" src={image}></img>by {article.author}</h5>
@@ -49,8 +43,7 @@ useEffect(() => {
                   <p>{article.body}</p>
                   <p>{article.created_at}</p>
                    </button> 
-             </Link>
-                 
+             </Link>            
                   <p>comments: {article.comment_count}</p>
                   <p>votes: {article.votes} </p>
                  

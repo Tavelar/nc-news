@@ -31,11 +31,8 @@ export const getComments = async (article_id) => {
 //   return data;
 // };
 
-// export const postArticleComment = async (article_id, newCommentBody) => {
-//   const { data } = await ncNewsApi.post(
-//     `/articles/${article_id}/comments`,
-//     newCommentBody
-//   );
+// export const postArticleComment = async (article_id) => {
+//   const { data } = await ncNewsApi.post(`/articles/${article_id}/comments`);
 //   console.log(data);
 //   return data;
 // };
