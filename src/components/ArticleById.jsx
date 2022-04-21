@@ -24,13 +24,13 @@ useEffect(() => {
 },[])
 
 
-const likeButton = (e) => {
-e.preventDefault();
+const likeButton = () => {
+
 setVotes((currVotes) => currVotes + 1)
 patchUpvote(article_id)
 }
-const disLikeButton = (e) => {
-    e.preventDefault();
+const disLikeButton = () => {
+   
     setVotes((currVotes) => currVotes - 1)
     patchDownvote(article_id)
     }
