@@ -6,7 +6,6 @@ const ncNewsApi = axios.create({
 
 export const getArticles = async () => {
   const { data } = await ncNewsApi.get("/articles/");
-
   return data;
 };
 
@@ -15,3 +14,52 @@ export const getUsers = async () => {
 
   return data;
 };
+
+export const getArticleId = async (article_id) => {
+  const { data } = await ncNewsApi.get(`/articles/${article_id}`);
+  return data;
+};
+
+export const getComments = async (article_id) => {
+  const { data } = await ncNewsApi.get(`/articles/${article_id}/comments`);
+
+  return data;
+};
+
+export const patchUpvote = async (article_id) => {
+  const { data } = await ncNewsApi.patch(`/articles/${article_id}`, {
+    inc_votes: 1,
+  });
+  return data;
+};
+
+export const patchDownvote = async (article_id) => {
+  const { data } = await ncNewsApi.patch(`/articles/${article_id}`, {
+    inc_votes: -1,
+  });
+  return data;
+};
+export const postArticleComment = async (article_id, newCommentBody) => {
+  console.log(newCommentBody);
+  const { data } = await ncNewsApi.post(`/articles/${article_id}/comments`, {
+    body: newCommentBody,
+    username: "grumpy19",
+  });
+
+  return data;
+};
+
+export const getSortArticle = async (sorter) => {
+  const { data } = await ncNewsApi.get(`/articles?sort_by=${sorter}`);
+  return data;
+};
+
+export const getSortByAscDesc = async (order) => {
+  const { data } = await ncNewsApi.get(`/articles?order=${order}`);
+  return data;
+};
+
+// export const getSortedTopics = async (topic) => {
+//   const { data } = await ncNewsApi.get(`/articles?topic=${topic}`);
+//   return data;
+// };

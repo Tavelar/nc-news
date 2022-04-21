@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-html {}
+/* html {} */
 .nav {
   margin: 4px;
   font-style: bold;
@@ -25,3 +25,17 @@ html {}
   padding-bottom: 0px;
   
 }
+
+.article-comment {
+  border-style: groove;
+  margin: 10px;
+  background-color: rgba(227, 227, 227, 0.604);
+}
+
+ul {
+  list-style-type: none;
+  padding-inline-start: 0px;
+  margin: 20px;
+ 
+}
+
