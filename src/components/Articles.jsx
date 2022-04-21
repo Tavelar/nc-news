@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import {getArticles, getUsers} from '../utils/api'
+import {getArticles, getTopics, getUsers, getSortedTopics} from '../utils/api'
 import Sorter from "../components/Sorter"
 import { Link } from 'react-router-dom'
+import Moment from 'react-moment';
+import 'moment-timezone';
 
-const Articles = () => {
+const Articles = ({sortTopic, setSortTopic}) => {
 const [articles, setArticles] = useState([])
 const [users, setUsers] = useState([])
 useEffect(() => {
@@ -11,11 +13,18 @@ useEffect(() => {
     getUsers().then((users) => setUsers(users.users))
 },[])
 
+getTopics().then((topics) => {
+    console.log(topics);
+})
+
+// getSortedTopics().then((topic) => {
+
+// })
 
     return (
    <div>
 
-      <Sorter setArticles={setArticles} />
+      <Sorter articles={articles} setArticles={setArticles} />
        <ul>
            
 
@@ -27,25 +36,49 @@ useEffect(() => {
                }
            }       
            return (
-               <li className="article" key={article.article_id}>
-                  <h3>{article.title}</h3>
-                 
-             <h5><img className="author-image" alt='broken' src={image}></img>by {article.author}</h5>
-             <Link to={`topic/${article.topic}`} >
-             <button className="topic-button">
-                  <p>{article.topic}</p>
-             </button>
-             </Link>
+
+
+
+
+
+               <div className="article-div">
              <Link to={`${article.article_id}`}>
-                   <button>
+                 
+                   <button className="article-body">
+
+               <li className="article" key={article.article_id}>
+
+        <div className="single-parent">
+
+        <div className="single-child-1">
+     <h3>{article.title}</h3>
+             <Link to={`/articles/topic/${article.topic}`} >
+        <button className="single-article-button">
+    <p>{article.topic}</p>
+            </button>
+            </Link>
+            </div>
+
+                        <div className="single-child-2">
+                        <img className="single-author-image" alt='broken' src={image}></img>
+                            </div>
+                         <h5 className="single-article-author">By {article.author}</h5>
+                        </div>
+             
+                   <div>
+
                   <p>{article.body}</p>
-                  <p>{article.created_at}</p>
-                   </button> 
-             </Link>            
+                 
+                   </div>
                   <p>comments: {article.comment_count}</p>
                   <p>votes: {article.votes} </p>
+                  <Moment>{article.created_at}</Moment>
                  
                </li>
+
+                   </button> 
+             </Link>            
+               </div>
                )
             })}
             </ul>

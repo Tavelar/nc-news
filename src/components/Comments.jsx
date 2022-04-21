@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import {getComments, postArticleComment, deleteComment} from '../utils/api'
 import DeletePopup from "../components/DeletePopup"
+import Moment from 'react-moment';
+import 'moment-timezone';
 const Comments = ({article_id, user}) => {
 const [comments, setComments] = useState([]);
 const [newCommentBody, setNewCommentBody] = useState('');
 const [popupDeleteButton, setPopupDeleteButton] = useState(false)
+
 // console.log(user);
 useEffect(() => {
     getComments(article_id).then((comments) => {
@@ -64,11 +67,12 @@ return (
         return (
             <li className="article-comment"  key={comments.author + comments.created_at}>
                
-                <p>auther:{comments.author}</p>
+                <p>auther: {comments.author}</p>
                 <p>{comments.body}</p>
-                <p>{comments.created_at}</p>
-                <p>{comments.votes}</p>
-                <p>{comments.comment_id} id</p>
+                <p>Date Created: <Moment>{comments.created_at}</Moment></p>
+               
+                <p>Votes: {comments.votes}</p>
+                
                 <div>
                 {deleteButton}
                 {deletePopup}

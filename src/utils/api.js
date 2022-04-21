@@ -59,12 +59,18 @@ export const getSortByAscDesc = async (order) => {
   return data;
 };
 
-// export const getSortedTopics = async (topic) => {
-//   const { data } = await ncNewsApi.get(`/articles?topic=${topic}`);
-//   return data;
-// };
-
 export const deleteComment = async (id) => {
   const { data } = await ncNewsApi.delete(`/comments/${id}`);
+  return data;
+};
+
+export const getTopics = async () => {
+  const { data } = await ncNewsApi.get(`/topics`);
+  return data;
+};
+
+export const getSortedTopics = async (topic) => {
+  const { data } = await ncNewsApi.get(`/articles?topic=${topic}`);
+  console.log(topic);
   return data;
 };
