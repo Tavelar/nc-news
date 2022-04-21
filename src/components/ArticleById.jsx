@@ -3,9 +3,9 @@ import {getArticleId, getUsers, patchUpvote, patchDownvote} from '../utils/api'
 import {useParams} from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import Comments from '../components/Comments'
-const ArticleById = () => {
+const ArticleById = ({user}) => {
 const [article, setArticle] = useState([])
-const [user, setUser] = useState([])
+const [users, setUsers] = useState([])
 const [votes, setVotes] = useState(0)
 const {article_id} = useParams()
 
@@ -17,7 +17,7 @@ useEffect(() => {
 },[article_id])
 useEffect(() => {
     getUsers().then((user) => { 
-        setUser(user.users)
+        setUsers(user.users)
     })
 },[])
 
@@ -34,11 +34,12 @@ const disLikeButton = (e) => {
     }
 
 let image; 
-    for (let i = 0; i<user.length; i++) {
-      if(article.author === user[i].username) {
-            image = user[i].avatar_url
+    for (let i = 0; i<users.length; i++) {
+      if(article.author === users[i].username) {
+            image = users[i].avatar_url
       }
   }
+  
     return (
    <div>
        <ul>
@@ -60,7 +61,7 @@ let image;
                   <p>votes: {article.votes + votes} <button value={article.votes} onClick={likeButton}>👍</button><button value={article.votes} onClick={disLikeButton}>👎</button></p>
                </li>
               
-               <Comments article_id={article_id} />
+               <Comments article_id={article_id} user={user} />
             
             </ul>
    </div>

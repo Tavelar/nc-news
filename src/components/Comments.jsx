@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import {getComments, postArticleComment} from '../utils/api'
-const Comments = ({article_id}) => {
+import {getComments, postArticleComment, deleteComment} from '../utils/api'
+import DeletePopup from "../components/DeletePopup"
+const Comments = ({article_id, user}) => {
 const [comments, setComments] = useState([]);
 const [newCommentBody, setNewCommentBody] = useState('');
-
+const [popupDeleteButton, setPopupDeleteButton] = useState(false)
+// console.log(user);
 useEffect(() => {
     getComments(article_id).then((comments) => {
         setComments(comments.comments)
@@ -17,8 +19,29 @@ const newArticleComment = (e) => {
     .then((comment) => {
         console.log(comment);
     })
-    }
+}
 
+// console.log(deletePopup);
+const handleDelete = (e) => {
+    setPopupDeleteButton(true)
+    
+    
+        deleteComment(e.target.value).then(() => {
+            
+       setComments((currComments) => {
+        console.log(currComments);
+        const newComments = []
+        for(let i=0; i<currComments.length; i++) {
+            if(currComments[i].comment_id !== +e.target.value) {
+                newComments.push(currComments[i])
+            }
+        }
+        console.log(newComments);
+        return newComments
+    })
+})
+    }
+    
 return (
     <ul>
  <form onSubmit={newArticleComment}>
@@ -30,15 +53,26 @@ return (
                    <button>post</button> 
                </form>
     {comments.map((comments) => {
-        
+        let deleteButton;
+        let deletePopup;
+        if(comments.author === 'grumpy19') {
+            deleteButton = <button  onClick={handleDelete} value={comments.comment_id} className="comment-delete-button">Delete</button>;
+            deletePopup = <DeletePopup  trigger={popupDeleteButton} setTrigger={setPopupDeleteButton} />;
+        } else {
+            deleteButton = null
+        }
         return (
-            <li className="article-comment" key={comments.author + comments.created_at}>
+            <li className="article-comment"  key={comments.author + comments.created_at}>
                
                 <p>auther:{comments.author}</p>
                 <p>{comments.body}</p>
                 <p>{comments.created_at}</p>
                 <p>{comments.votes}</p>
-                
+                <p>{comments.comment_id} id</p>
+                <div>
+                {deleteButton}
+                {deletePopup}
+                </div>
                 
             </li>
         )
