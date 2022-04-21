@@ -11,16 +11,10 @@ const {topic} = useParams()
 const [articles, setArticles] = useState([])
 const [users, setUsers] = useState([])
 useEffect(() => {
-    getArticles(topic).then((article) => {
-        
-        setArticles(article.articles)
-    })
+    getArticles(topic).then((article) => setArticles(article.articles))
 },[])
 useEffect(() => {
-    getUsers().then((users) => {
-       
-        setUsers(users.users)
-    })
+    getUsers().then((users) => setUsers(users.users))
 },[])
 
 return (

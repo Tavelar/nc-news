@@ -30,7 +30,7 @@ useEffect(() => {
                <li className="article" key={article.article_id}>
                   <h3>{article.title}</h3>
                  
-             <h5><img className="author-image" src={image}></img>by {article.author}</h5>
+             <h5><img className="author-image" alt='broken' src={image}></img>by {article.author}</h5>
              <Link to={`topic/${article.topic}`} >
              <button className="topic-button">
                   <p>{article.topic}</p>

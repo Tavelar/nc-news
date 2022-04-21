@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import {getArticles, getUsers, getSortArticle, getSortByAscDesc} from '../utils/api'
-import { Link } from 'react-router-dom'
+
+import {getSortArticle, getSortByAscDesc} from '../utils/api'
+
 
 const Sorter = ({setArticles}) => {
 

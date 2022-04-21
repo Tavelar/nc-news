@@ -5,9 +5,11 @@ import Articles from "./components/Articles";
 import TopicOfArticles from "./components/TopicOfArticles";
 import ArticleById from "./components/ArticleById";
 import { Route, Routes } from "react-router-dom";
+
 import Nav from "./components/Nav";
 function App() {
   const [sortTopic, setSortTopic] = useState("default");
+  const [user, setUser] = useState("grumpy19");
   return (
     <div className="App">
       <Header />
@@ -21,7 +23,10 @@ function App() {
           }
         />
         <Route path="/articles/topic/:topic" element={<TopicOfArticles />} />
-        <Route path="/articles/:article_id" element={<ArticleById />} />
+        <Route
+          path="/articles/:article_id"
+          element={<ArticleById user={user} setUser={setUser} />}
+        />
       </Routes>
     </div>
   );

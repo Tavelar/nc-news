@@ -63,3 +63,8 @@ export const getSortByAscDesc = async (order) => {
 //   const { data } = await ncNewsApi.get(`/articles?topic=${topic}`);
 //   return data;
 // };
+
+export const deleteComment = async (id) => {
+  const { data } = await ncNewsApi.delete(`/comments/${id}`);
+  return data;
+};
