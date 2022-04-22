@@ -68,9 +68,9 @@ if(error) {
      <h3>{article.title}</h3>
 
              {/* <Link to={`/articles/topic/${article.topic}`} >
-        <button className="single-article-button">
+        <button className="single-article-button"> */}
         <p>{article.topic}</p>
-            </button>
+            {/* </button>
         </Link> */}
             </div>
 

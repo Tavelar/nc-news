@@ -24,7 +24,7 @@ const Error = () => {
    
    <p>the page you are looking for not avaible!</p>
    
-   <Link  to='/home' class="link_404">Back Home</Link>
+   <Link  to='/' class="link_404">Back Home</Link>
  </div>
    </div>
    </div>

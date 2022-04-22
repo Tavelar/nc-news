@@ -74,3 +74,8 @@ export const getSortedTopics = async (topic) => {
   console.log(topic);
   return data;
 };
+
+export const getSingleComment = async (comment_id) => {
+  const { data } = await ncNewsApi.get(`/comments/${comment_id}`);
+  return data;
+};

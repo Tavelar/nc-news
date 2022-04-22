@@ -12,10 +12,11 @@ const [users, setUsers] = useState([])
 const [votes, setVotes] = useState(0)
 const {article_id} = useParams()
 const [error, setError] = useState(false)
-
+const [loading, setLoading] = useState(true)
 useEffect(() => {
     getArticleId(article_id).then((article) => {
         setArticle(article.article)
+        setLoading(false)
     }).catch(() => setError(true))
 },[article_id])
 useEffect(() => {
@@ -48,7 +49,9 @@ let image;
         <Error />
         </Link>
     )
-} else {
+} else if (loading) {
+    return <h1 className='loading-page'>Loading page</h1>
+} {
 
     
     return (
@@ -62,11 +65,11 @@ let image;
 
               <div className="single-child-1">
                   <h3>{article.title}</h3>
-                  <Link to={`/articles/topic/${article.topic}`} >
-             <button className="single-article-button">
+                  {/* <Link to={`/articles/topic/${article.topic}`} >
+             <button className="single-article-button"> */}
                   <p>{article.topic}</p>
-             </button>
-             </Link>
+             {/* </button>
+             </Link> */}
               </div>
               
                  <div className="single-child-2">
@@ -83,7 +86,9 @@ let image;
                    </div>
                    
                   <p>comments: {article.comment_count}</p>
-                  <p>votes: {article.votes + votes} <button className="like-button"value={article.votes} onClick={likeButton}>👍</button><button className='dislike-button' value={article.votes} onClick={disLikeButton}>👎</button></p>
+                  <p>votes: {article.votes + votes} </p>
+                  <p><button className="like-button"value={article.votes} onClick={likeButton}>👍</button><button className='dislike-button' value={article.votes} onClick={disLikeButton}>👎</button></p>
+
                   <Moment>{article.created_at}</Moment>
                 
            </article>

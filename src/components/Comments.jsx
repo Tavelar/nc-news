@@ -10,12 +10,12 @@ const [comments, setComments] = useState([]);
 const [newCommentBody, setNewCommentBody] = useState('');
 const [popupDeleteButton, setPopupDeleteButton] = useState(false)
 const [error, setError] = useState(false)
-// console.log(user);
+const [loading, setLoading] = useState(true)
 
 useEffect(() => {
     getComments(article_id).then((comments) => {
         setComments(comments.comments)
-       
+       setLoading(false)
     }).catch(() => setError(true))
    
 
@@ -53,13 +53,14 @@ const handleDelete = (e) => {
 })
     }
     
-    if(error) {
-        return (
+    if(error) {return (
             <Link to='*'>
             <Error />
             </Link>
         )
-    } else {
+    } else if (loading) {
+        return <h1 className='loading-page'>Loading page</h1>
+    } {
 
         
         return (
@@ -68,12 +69,12 @@ const handleDelete = (e) => {
                    <label>
 
 
-                   <input required value={newCommentBody.body} onChange={(e => {setNewCommentBody(e.target.value)})} name='body' placeholder="comment" type='text'></input> 
+                   <input required value={newCommentBody} onChange={(e => {setNewCommentBody(e.target.value)})} name='body' placeholder="comment" type='text'></input> 
                    </label>
                    <button>post</button> 
                </form>
     {comments.map((comments) => {
-        
+        // console.log(comments);
         let deleteButton;
         let deletePopup;
         if(comments.author === 'grumpy19') {
@@ -85,6 +86,9 @@ const handleDelete = (e) => {
         return (
             <li className="article-comment"  key={comments.author + comments.created_at}>
                
+            <Link to={`/comments/${comments.comment_id}`}>
+                <button className="comment-view-button" >View comment</button>
+            </Link>
                 <p>auther: {comments.author}</p>
                 <p>{comments.body}</p>
                 <p>Date Created: <Moment>{comments.created_at}</Moment></p>
@@ -92,9 +96,10 @@ const handleDelete = (e) => {
                 <p>Votes: {comments.votes}</p>
                 
                 <div>
+                </div>
+              
                 {deleteButton}
                 {deletePopup}
-                </div>
                 
             </li>
         )

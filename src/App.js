@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Articles from "./components/Articles";
 import TopicOfArticles from "./components/TopicOfArticles";
 import ArticleById from "./components/ArticleById";
+import SingleComment from "./components/SingleComment";
 import Home from "./components/Home";
 import Error from "./components/Error";
 import { Route, Routes } from "react-router-dom";
@@ -29,6 +30,10 @@ function App() {
         <Route
           path="/articles/:article_id"
           element={<ArticleById user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/comments/:comment_id"
+          element={<SingleComment user={user} />}
         />
         <Route path="*" element={<Error />} />
       </Routes>

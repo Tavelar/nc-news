@@ -28,6 +28,8 @@ if(error) {
         <Error />
         </Link>
     )
+} else if (loading) {
+    return <h1 className='loading-page'>Loading page</h1>
 } else {
 
     return (
@@ -63,9 +65,9 @@ if(error) {
         
 
                 {/* <Link to={`/articles/topic/${article.topic}`} >
-           <button className="single-article-button">
+           <button className="single-article-button"> */}
        <p>{article.topic}</p>
-       </button>
+       {/* </button>
                </Link> */}
         
                </div>
