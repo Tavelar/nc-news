@@ -11,13 +11,19 @@ from an api that interacts with Postgresql
 
 ### Using this app
 
+---
+
 This App can be used by forking the repo or cloning the link below
 
 ```
   To clone, simple write "git clone https://github.com/Tavelar/nc-news.git" in your terminal
 ```
 
+---
+
 ### Dependencies listed below
+
+---
 
 - react-router-dom
 
@@ -27,6 +33,10 @@ This App can be used by forking the repo or cloning the link below
 
 - axios
 
-All can be installed by running: npm i
+```
+these dependencies can be install by running: npm i
+```
+
+---
 
 ### Links
