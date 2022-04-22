@@ -5,22 +5,23 @@ import {Link} from 'react-router-dom'
 import Moment from 'react-moment';
 import 'moment-timezone';
 import Comments from '../components/Comments'
+import Error from './Error'
 const ArticleById = ({user}) => {
 const [article, setArticle] = useState([])
 const [users, setUsers] = useState([])
 const [votes, setVotes] = useState(0)
 const {article_id} = useParams()
-
+const [error, setError] = useState(false)
 
 useEffect(() => {
     getArticleId(article_id).then((article) => {
         setArticle(article.article)
-    })
+    }).catch(() => setError(true))
 },[article_id])
 useEffect(() => {
     getUsers().then((user) => { 
         setUsers(user.users)
-    })
+    }).catch(() => setError(true))
 },[])
 
 
@@ -41,9 +42,17 @@ let image;
             image = users[i].avatar_url
       }
   }
-  
+  if(error) {
     return (
-   <div>
+        <Link to='*'>
+        <Error />
+        </Link>
+    )
+} else {
+
+    
+    return (
+        <div>
 
 
 
@@ -85,7 +94,8 @@ let image;
    </div>
         
     
-    )
+        )
+    }
 }
 
 export default ArticleById;

@@ -39,11 +39,11 @@ export const patchDownvote = async (article_id) => {
   });
   return data;
 };
-export const postArticleComment = async (article_id, newCommentBody) => {
+export const postArticleComment = async (article_id, newCommentBody, user) => {
   console.log(newCommentBody);
   const { data } = await ncNewsApi.post(`/articles/${article_id}/comments`, {
     body: newCommentBody,
-    username: "grumpy19",
+    username: user,
   });
 
   return data;

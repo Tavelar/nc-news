@@ -1,15 +1,16 @@
 
 import {getSortArticle, getSortByAscDesc, getSortedTopics} from '../utils/api'
 import {Link} from 'react-router-dom'
-import { useParams } from 'react-router-dom'
+import {useState} from 'react'
+import Error from './Error'
 const Sorter = ({articles, setArticles}) => {
-
+const [error, setError] = useState(false)
     const sortArticles = (e) => {
       
         getSortArticle(e.target.value)
         .then((sorted) => {
             setArticles(sorted.articles)
-        })
+        }).catch(() => setError(true))
     
     }
 
@@ -17,7 +18,7 @@ const Sorter = ({articles, setArticles}) => {
         getSortByAscDesc(e.target.value)
         .then((sorter) => {   
             setArticles(sorter.articles)
-        })
+        }).catch(() => setError(true))
     }
 
     // const sortTopic = (e) => {
@@ -37,18 +38,26 @@ const Sorter = ({articles, setArticles}) => {
 // } else {
 //     cookingButton = null
 // }
+if(error) {
+    return (
+        <Link to='*'>
+        <Error />
+        </Link>
+    )
 
+} else {
 
-return (
-    <>
-    <select name="sortby" id="sortby" onChange={sortArticles}>
-    <option value="" disabled selected>Sort by</option>
+    
+    return (
+        <>
+    <select value='' name="sortby" id="sortby" onChange={sortArticles}>
+    <option value="" disabled >Sort by</option>
     <option value="created_at">created</option>
     <option value="comment_count">comments</option>
     <option value="votes">votes</option>
   </select>
-    <select name="sortby" id="sortby-desc-asc" onChange={sortByAscDesc}>
-    <option value="" disabled selected>Order</option>
+    <select value='' name="sortby" id="sortby-desc-asc" onChange={sortByAscDesc}>
+    <option value="" disabled >Order</option>
           <option value='DESC'>descending</option>
           <option value='ASC'>ascending</option>
       </select>
@@ -71,6 +80,7 @@ return (
     </>
 )
 
+}
 }
 
 export default Sorter

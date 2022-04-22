@@ -3,25 +3,32 @@ import {getComments, postArticleComment, deleteComment} from '../utils/api'
 import DeletePopup from "../components/DeletePopup"
 import Moment from 'react-moment';
 import 'moment-timezone';
+import {Link} from 'react-router-dom'
+import Error from './Error'
 const Comments = ({article_id, user}) => {
 const [comments, setComments] = useState([]);
 const [newCommentBody, setNewCommentBody] = useState('');
 const [popupDeleteButton, setPopupDeleteButton] = useState(false)
-
+const [error, setError] = useState(false)
 // console.log(user);
+
 useEffect(() => {
     getComments(article_id).then((comments) => {
         setComments(comments.comments)
-    })
+       
+    }).catch(() => setError(true))
+   
+
 })
 
 const newArticleComment = (e) => {
     e.preventDefault()
 
-    postArticleComment(article_id, newCommentBody)
+    postArticleComment(article_id, newCommentBody, user)
     .then((comment) => {
         console.log(comment);
-    })
+        setNewCommentBody('')
+    }).catch(() => setError(true))
 }
 
 // console.log(deletePopup);
@@ -40,22 +47,33 @@ const handleDelete = (e) => {
             }
         }
         console.log(newComments);
+        
         return newComments
     })
 })
     }
     
-return (
-    <ul>
+    if(error) {
+        return (
+            <Link to='*'>
+            <Error />
+            </Link>
+        )
+    } else {
+
+        
+        return (
+            <ul>
  <form onSubmit={newArticleComment}>
                    <label>
 
 
-                   <input value={newCommentBody.body} onChange={(e => setNewCommentBody(e.target.value))} name='body' placeholder="comment" type='text'></input> 
+                   <input required value={newCommentBody.body} onChange={(e => {setNewCommentBody(e.target.value)})} name='body' placeholder="comment" type='text'></input> 
                    </label>
                    <button>post</button> 
                </form>
     {comments.map((comments) => {
+        
         let deleteButton;
         let deletePopup;
         if(comments.author === 'grumpy19') {
@@ -83,6 +101,7 @@ return (
     })}
     </ul>
 )
+}
 }
 
 export default Comments

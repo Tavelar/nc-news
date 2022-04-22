@@ -5,22 +5,34 @@ import Sorter from '../components/Sorter'
 import {useParams} from 'react-router-dom'
 import Moment from 'react-moment';
 import 'moment-timezone';
+import Error from "../components/Error";
 const TopicOfArticles = () => {
    
 const {topic} = useParams()
-
+const [error, setError] = useState(false)
 const [articles, setArticles] = useState([])
 const [users, setUsers] = useState([])
+const [loading, setLoading] = useState(true)
 useEffect(() => {
-    getArticles(topic).then((article) => setArticles(article.articles))
+    getArticles(topic).then((article) => {
+        setArticles(article.articles)
+        setLoading(false)
+    }).catch(() => setError(true))
 },[topic])
 useEffect(() => {
-    getUsers().then((users) => setUsers(users.users))
+    getUsers().then((users) => setUsers(users.users)).catch(() => setError(true))
 },[])
+if(error) {
+    return (
+        <Link to='*'>
+        <Error />
+        </Link>
+    )
+} else {
 
-return (
-
-    
+    return (
+        
+        
     <div>
          <Sorter setArticles={setArticles} />
        <ul>
@@ -37,22 +49,25 @@ return (
                 } 
             }  
             return (
+                  <li className="article" key={article.article_id}>
                 <div className="article-div">
                 <Link to={`/articles/${article.article_id}`}>
                     
                       <button className="article-body">
    
-                  <li className="article" key={article.article_id}>
    
            <div className="single-parent">
    
            <div className="single-child-1">
         <h3>{article.title}</h3>
-                <Link to={`/articles/topic/${article.topic}`} >
+        
+
+                {/* <Link to={`/articles/topic/${article.topic}`} >
            <button className="single-article-button">
        <p>{article.topic}</p>
-               </button>
-               </Link>
+       </button>
+               </Link> */}
+        
                </div>
    
                            <div className="single-child-2">
@@ -70,11 +85,11 @@ return (
                   
                      <Moment>{article.created_at}</Moment>
                     
-                  </li>
    
                       </button> 
                 </Link>            
                   </div>
+                  </li>
                   )
                })}
                </ul>
@@ -82,5 +97,6 @@ return (
         
         
         )
+    }
 }
 export default TopicOfArticles
