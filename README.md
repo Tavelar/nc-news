@@ -1,7 +1,5 @@
-Northcoders News
-
+---
 ### welcome to to the northcoders news!
-
 ---
 
 This app was created using react and axios to a make a C.R.U.D app and receives the information
@@ -15,8 +13,10 @@ from an api that interacts with Postgresql
 
 This App can be used by forking the repo or cloning the link below
 
+To clone, simple copy the line below in your terminal
+
 ```
-  To clone, simple write "git clone https://github.com/Tavelar/nc-news.git" in your terminal
+git clone https://github.com/Tavelar/nc-news.git
 ```
 
 ---
@@ -33,8 +33,10 @@ This App can be used by forking the repo or cloning the link below
 
 - axios
 
+these dependencies can be installed by running:
+
 ```
-these dependencies can be install by running: npm i
+ npm i
 ```
 
 ---
