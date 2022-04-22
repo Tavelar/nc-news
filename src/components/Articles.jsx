@@ -71,7 +71,7 @@ if(error) {
              
                    <div>
 
-                  <p>{article.body}</p>
+                 
                  
                    </div>
                   <p>comments: {article.comment_count}</p>

@@ -73,10 +73,7 @@ if(error) {
                             <h5 className="single-article-author">By {article.author}</h5>
                            </div>
                 
-                      <div>
-   
-                     <p>{article.body}</p>
-                      </div>
+                    
                      <p>comments: {article.comment_count}</p>
                      <p>votes: {article.votes} </p>
                   

@@ -73,7 +73,8 @@ return (
             
            <p>{comment.comment[0].author}</p>
            <p>{comment.comment[0].body} </p>
-           <p>{comment.comment[0].votes}</p>
+           <p>votes: {comment.comment[0].votes}</p>
+           <Moment>{comment.comment[0].created_at}</Moment>
                   {deleteButton}
                 {deletePopup}
            

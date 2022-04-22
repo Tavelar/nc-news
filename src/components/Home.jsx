@@ -3,6 +3,9 @@ const Home = () => {
     
     
         return (
+                <>
+        
+<h1 className="north-welcome">Welcome to Northcoders News!</h1>                
            <div className="comp-home">
 
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,6 +56,7 @@ const Home = () => {
 </svg>
 
            </div>
+                </>
         )
     
     

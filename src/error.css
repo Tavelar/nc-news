@@ -26,3 +26,7 @@
     margin: 20px 0;
     display: inline-block;}
   .contant_box_404{ margin-top:-50px;}
+
+  .text-center {
+    background-color: rgba(0,0,0,0)
+  }

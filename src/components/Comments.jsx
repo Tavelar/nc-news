@@ -66,12 +66,16 @@ const handleDelete = (e) => {
         return (
             <ul>
  <form onSubmit={newArticleComment}>
-                   <label>
+                   
 
 
-                   <input required value={newCommentBody} onChange={(e => {setNewCommentBody(e.target.value)})} name='body' placeholder="comment" type='text'></input> 
-                   </label>
-                   <button>post</button> 
+                   <textarea autoComplete="off" rows='2' required 
+                   value={newCommentBody} onChange={(e => {setNewCommentBody(e.target.value)})} 
+                   name='message' placeholder="comment" type='text'></textarea> 
+                  <div>
+                  <button className='post-button'>post</button> 
+                  </div>
+                   
                </form>
     {comments.map((comments) => {
        
