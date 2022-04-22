@@ -25,13 +25,13 @@ const newArticleComment = (e) => {
     e.preventDefault()
 
     postArticleComment(article_id, newCommentBody, user)
-    .then((comment) => {
-        console.log(comment);
+    .then(() => {
+        
         setNewCommentBody('')
     }).catch(() => setError(true))
 }
 
-// console.log(deletePopup);
+
 const handleDelete = (e) => {
     setPopupDeleteButton(true)
     
@@ -39,14 +39,14 @@ const handleDelete = (e) => {
         deleteComment(e.target.value).then(() => {
             
        setComments((currComments) => {
-        console.log(currComments);
+        
         const newComments = []
         for(let i=0; i<currComments.length; i++) {
             if(currComments[i].comment_id !== +e.target.value) {
                 newComments.push(currComments[i])
             }
         }
-        console.log(newComments);
+       
         
         return newComments
     })
@@ -74,7 +74,7 @@ const handleDelete = (e) => {
                    <button>post</button> 
                </form>
     {comments.map((comments) => {
-        // console.log(comments);
+       
         let deleteButton;
         let deletePopup;
         if(comments.author === 'grumpy19') {

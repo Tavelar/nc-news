@@ -1,9 +1,9 @@
 
-import {getSortArticle, getSortByAscDesc, getSortedTopics} from '../utils/api'
+import {getSortArticle, getSortByAscDesc} from '../utils/api'
 import {Link} from 'react-router-dom'
 import {useState} from 'react'
 import Error from './Error'
-const Sorter = ({articles, setArticles}) => {
+const Sorter = ({setArticles}) => {
 const [error, setError] = useState(false)
     const sortArticles = (e) => {
       
@@ -21,23 +21,6 @@ const [error, setError] = useState(false)
         }).catch(() => setError(true))
     }
 
-    // const sortTopic = (e) => {
-    //     if(e.target.value === 'default'){
-    //         return;
-    //     } else {
-
-    //         getSortedTopics(e.target.value)
-    //         .then((topicSort) => {
-    //             setArticles(topicSort.articles)
-    //         })
-    //     }
-    // }
-//     let cookingButton;
-// if(topic !== 'cooking' ){
-// cookingButton = 
-// } else {
-//     cookingButton = null
-// }
 if(error) {
     return (
         <Link to='*'>

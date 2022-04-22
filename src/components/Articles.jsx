@@ -20,11 +20,6 @@ useEffect(() => {
 },[])
 
 
-
-// getTopics().then((topics) => {
-    
-// })
-
 if(error) {
     return (
         <Link to='*'>
@@ -51,9 +46,6 @@ if(error) {
            }       
            return (
 
-
-
-
                
                    <li className="article" key={article.article_id}>
                <div className="article-div">
@@ -66,12 +58,9 @@ if(error) {
 
         <div className="single-child-1">
      <h3>{article.title}</h3>
-
-             {/* <Link to={`/articles/topic/${article.topic}`} >
-        <button className="single-article-button"> */}
+  
         <p>{article.topic}</p>
-            {/* </button>
-        </Link> */}
+      
             </div>
 
                         <div className="single-child-2">

@@ -12,7 +12,7 @@ const SingleComment = () => {
     const [loading, setLoading] = useState(true)
     const [comment, setComment] = useState([])
     const {comment_id} = useParams()
-// console.log(comment_id);
+
 useEffect(() => {
 
     getSingleComment(comment_id).then((comment) => {
@@ -52,9 +52,7 @@ if(error) {
 
     let deleteButton;
         let deletePopup;
-        // if(comment.comment !== undefined) {
-        //     console.log( comment.comment[0].article_id)
-        //  }   
+  
         if(comment.comment[0].author === 'grumpy19' && comment.comment !== undefined) {
             deleteButton = (
                 <Link to={`/articles/${comment.comment[0].article_id}`}>

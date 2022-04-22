@@ -63,12 +63,7 @@ if(error) {
            <div className="single-child-1">
         <h3>{article.title}</h3>
         
-
-                {/* <Link to={`/articles/topic/${article.topic}`} >
-           <button className="single-article-button"> */}
        <p>{article.topic}</p>
-       {/* </button>
-               </Link> */}
         
                </div>
    
