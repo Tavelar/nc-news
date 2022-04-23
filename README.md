@@ -13,6 +13,8 @@ from an api that interacts with Postgresql
 
 This App can be used by forking the repo or cloning the link below
 
+- Node Version 16 or higher required
+
 To clone, simple copy the line below in your terminal
 
 ```
@@ -42,3 +44,7 @@ these dependencies can be installed by running:
 ---
 
 ### Links
+
+- https://626340fbcbf68429bdaff7bb--super-cool-site-by-tavelar.netlify.app/
+
+- https://tavelar-app.herokuapp.com/api
