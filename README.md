@@ -1,5 +1,5 @@
 ---
-### welcome to to the northcoders news!
+### welcome to the northcoders news!
 ---
 
 This app was created using react and axios to a make a C.R.U.D app and receives the information
